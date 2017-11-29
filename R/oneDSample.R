@@ -1,5 +1,5 @@
 #' Single Variable Rejection Sampling
-#'
+#' abcd
 #' This function implements single variable rehection sampling for rvs
 #' with bounded support and which have ahve bounded pdf.
 #' We expect N/maxf sampling function
