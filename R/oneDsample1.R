@@ -9,15 +9,18 @@ if (abs(integrate(f,lb,ub)$val)>1.001){
 }
 else{
   if ('no' %in% method){
-
-    
-  }
+    x = x[which(f(x)==max(f(x)))],
+    y = x[which(f(x)==min(f(x)))],
+  sampleData <- data.frame(t(sampleData))}
+  
   if ('uni' %in% method){
-    
-  }
+    if(lb!=Inf & ub!=Inf){
+      maxf<-max(f(runif(10000,lb,ub)))+1
+      data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
+  }}
   if ('stan' %in% method){
-    
-  }
+    sampleData <- replicate(50000,{pSX <- runif(1,lb,ub); ifelse(runif(1,0,maxf) < f(pSX),pSX,NA)})}
+  
   else {stop('You input an invalid method.')}
 }
   sampleplot<- funtion(oneDsample1){
