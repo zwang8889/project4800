@@ -1,26 +1,45 @@
-#oneDsample
-#f is the function
-#lb is the lower bound
-#ub is the upper bound
-method<- readline(prompt='Please enter the method you want to use.[normal,uniform,standard only]:')
-oneDSample1<- function(f,N=10000,lb,ub){
+#' Double Variable Rejection Sampling
+#'
+#' This function implements one variables rejection sampling for rvs
+#' with bounded support and which have a bounded pdf.
+#'
+#' Here are more details about the algorithm that we are using
+#'
+#'@param f the pdf that we are sampling from
+#'@param N the number of attempted samples
+#'@param lb the lower bound of support 
+#'@param ub the upper bound of support
+#'
+#'@return A vector containing samples from pdf
+#'@export
+#'
+#'@examples
+#'
+#'
+#'f<- function(x) {-1< x & x < 0, x+1, 0)}
+#'oneDsample1(f,50000,-1,0))
+#'
+#'
+#'
+oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
 if (abs(integrate(f,lb,ub)$val)>1.001){
   stop("Error: This is not a valid pdf.The area under the function you given should be 1")
 }
 else{
-  if ('no' %in% method){
-    x = x[which(f(x)==max(f(x)))],
-    y = x[which(f(x)==min(f(x)))],
-  sampleData <- data.frame(t(sampleData))}
+  if (method=='normal'){
+    x = runif(10000,-1000,1000)
+    maxx = x[which(f(x)==max(f(x)))]
+    alternatey=min((abs(maxy-maxx)))
+    sd = (2/max(f(x)))
+    c= maxf/dnorm(maxx,maxx,sd)
+    data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
+  }
   
-  if ('uni' %in% method){
+  else if(metod=='unif'){
     if(lb!=Inf & ub!=Inf){
       maxf<-max(f(runif(10000,lb,ub)))+1
       data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
   }}
-  if ('stan' %in% method){
-    sampleData <- replicate(50000,{pSX <- runif(1,lb,ub); ifelse(runif(1,0,maxf) < f(pSX),pSX,NA)})}
-  
   else {stop('You input an invalid method.')}
 }
   sampleplot<- funtion(oneDsample1){
