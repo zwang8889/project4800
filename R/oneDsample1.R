@@ -7,7 +7,11 @@
 #'
 #'@param f the pdf that we are sampling from
 #'@param N the number of attempted samples
+<<<<<<< HEAD
 #'@param lb the lower bound of support
+=======
+#'@param lb the lower bound of support 
+>>>>>>> 5156d4903f4b7cdd55cdc321cb3249e5c0f16aa8
 #'@param ub the upper bound of support
 #'
 #'@return A vector containing samples from pdf
@@ -17,10 +21,15 @@
 #'
 #'
 #'f<- function(x) {-1< x & x < 0, x+1, 0)}
+<<<<<<< HEAD
 #'w = oneDsample1(f,50000,-1,0))
 #'
 #'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
 #'w= oneDsample1(f,10000,0,1)
+=======
+#'oneDsample1(f,50000,-1,0))
+#'
+>>>>>>> 5156d4903f4b7cdd55cdc321cb3249e5c0f16aa8
 #'
 #'
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
@@ -36,7 +45,11 @@ else{
     c= maxf/dnorm(maxx,maxx,sd)
     data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 5156d4903f4b7cdd55cdc321cb3249e5c0f16aa8
   else if(metod=='unif'){
     if(lb!=Inf & ub!=Inf){
       maxf<-max(f(runif(10000,lb,ub)))+1
