@@ -18,11 +18,18 @@
 #'
 #'f<- function(x) {-1< x & x < 0, x+1, 0)}
 #'w = oneDsample1(f,50000,-1,0))
+#'oneDsample1(f,50000,-1,0))
+#'w = oneDsample1(f,50000,-1,0))
+#'
+#'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
+#'w= oneDsample1(f,10000,0,1)
+#'oneDsample1(f,50000,-1,0))
 #'
 #'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
 #'w= oneDsample1(f,10000,0,1)
   #'oneDsample1(f,50000,-1,0))
   #'
+
 #'
 #'
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
@@ -45,6 +52,19 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       }}
     else {stop('You input an invalid method.')}
   }
+  else if(metod=='unif'){
+    if(lb!=Inf & ub!=Inf){
+      maxf<-max(f(runif(10000,lb,ub)))+1
+      data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
+  }}
+  else {stop('You input an invalid method.')}
+  else if(metod=='unif'){
+    if(lb!=Inf & ub!=Inf){
+      maxf<-max(f(runif(10000,lb,ub)))+1
+      data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
+  }}
+  else {stop('You input an invalid method.')}
+}
   sampleplot<- funtion(oneDsample1){
     ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
-  }}
+  }
