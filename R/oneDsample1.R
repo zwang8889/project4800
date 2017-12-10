@@ -15,10 +15,10 @@
 #'
 #'@examples
 #'f<- function(x) {-1< x & x < 0, x+1, 0)}
-#'oneDsample1(f,50000,-1,0))
+#'oneDSample1(f,50000,-1,0)
 #'
 #'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
-#'oneDsample1(f,50000,-1,0))
+#'oneDSample1(f,50000,-1,0)
 #'
 #'
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
@@ -40,7 +40,8 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
         data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
       }}
     else {stop('You input an invalid method.')}
-  }}
+  }
+  }
 
 
   #sampleplot<- funtion(oneDsample1){
