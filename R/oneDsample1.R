@@ -43,6 +43,6 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
   }}
 
 
-  sampleplot<- funtion(oneDsample1){
-    ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
-  }
+  #sampleplot<- funtion(oneDsample1){
+#    ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
+#  }
