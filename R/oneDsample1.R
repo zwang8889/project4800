@@ -23,6 +23,8 @@
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'
+#'Need to add more examples maybe
+library(ggplot2)
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
   if (abs(integrate(f,lb,ub)$val)>1.001){
     stop("Error: This is not a valid pdf.The area under the function you given should be 1")
