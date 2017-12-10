@@ -28,8 +28,10 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
   else{
     if (method=='normal'){
       x = runif(10000,-1000,1000)
+      maxf= max(f(x))
       maxx = x[which(f(x)==max(f(x)))]
-      alternatey=min((abs(maxy-maxx)))
+      minx = y[which(f(x)==min(f(x)))]
+      alternatey=min((abs(minx-maxx)))
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
       data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
