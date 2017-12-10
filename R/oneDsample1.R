@@ -15,10 +15,12 @@
 #'
 #'@examples
 #'f<- function(x) {-1< x & x < 0, x+1, 0)}
-#'oneDSample1(f,50000,-1,0)
+#'w=oneDSample1(f,50000,-1,0)
+#'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
-#'oneDSample1(f,50000,-1,0)
+#'w=oneDSample1(f,50000,-1,0)
+#'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
@@ -46,6 +48,3 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
 }
 
 
-#sampleplot<- funtion(oneDsample1){
-#    ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
-#  }
