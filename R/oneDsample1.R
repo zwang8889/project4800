@@ -1,4 +1,4 @@
-#' Double Variable Rejection Sampling
+#' Single Variable Rejection Sampling
 #'
 #' This function implements one variables rejection sampling for rvs
 #' with bounded support and which have a bounded pdf.
