@@ -28,11 +28,13 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
   else{
     if (method=='normal'){
       x = runif(10000,-1000,1000)
+      maxf= max(f(x))
       maxx = x[which(f(x)==max(f(x)))]
-      alternatey=min((abs(maxy-maxx)))
+      minx = x[which(f(x)==min(f(x)))]
+      alternatey=min((abs(minx-maxx)))
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
-      data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
+      data.frame(x = replicate(N, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
     }
     else if(metod=='unif'){
       if(lb!=Inf & ub!=Inf){
@@ -41,9 +43,9 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       }}
     else {stop('You input an invalid method.')}
   }
-  }
+}
 
 
-  #sampleplot<- funtion(oneDsample1){
+#sampleplot<- funtion(oneDsample1){
 #    ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #  }
