@@ -41,7 +41,8 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
         data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,max(f(x)) < f(pSP), pSX, NA)}))
       }}
     else {stop('You input an invalid method.')}
-  }}
+  }
+  }
 
 
   #sampleplot<- funtion(oneDsample1){
