@@ -15,10 +15,10 @@
 #'
 #'@examples
 #'f<- function(x) {-1< x & x < 0, x+1, 0)}
-#'oneDsample1(f,50000,-1,0))
+#'oneDSample1(f,50000,-1,0)
 #'
 #'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
-#'oneDsample1(f,50000,-1,0))
+#'oneDSample1(f,50000,-1,0)
 #'
 #'
 oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
@@ -29,15 +29,16 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
     if (method=='normal'){
       x = runif(10000,-1000,1000)
       maxx = x[which(f(x)==max(f(x)))]
+      maxy = x[which(f(x)==min(f(x)))]
       alternatey=min((abs(maxy-maxx)))
       sd = (2/max(f(x)))
-      c= maxf/dnorm(maxx,maxx,sd)
+      c= max(f(x))/dnorm(maxx,maxx,sd)
       data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
     }
     else if(metod=='unif'){
       if(lb!=Inf & ub!=Inf){
-        maxf<-max(f(runif(10000,lb,ub)))+1
-        data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
+        max(f(x))<-max(f(runif(10000,lb,ub)))+1
+        data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,max(f(x)) < f(pSP), pSX, NA)}))
       }}
     else {stop('You input an invalid method.')}
   }}
