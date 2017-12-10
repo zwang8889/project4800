@@ -1,7 +1,7 @@
 #' Single Variable Rejection Sampling
-#' abcde
-#' This function implements single variable rehection sampling for rvs
-#' with bounded support and which have ahve bounded pdf.
+#'
+#' This function implements single variable rejection sampling for rvs
+#' with bounded support and which have a bounded pdf.
 #' We expect N/maxf sampling function
 #'
 #' Finds up to N samples fron on rv with pdf f.
@@ -23,6 +23,7 @@
 #'  ifelse(0<x&x <1, 2*x, 0)}
 #'oneDSAMPLE(f = betaPDF, N=100, lb=0, ub = 1, maxf = 2)
 #'hist(oneDSAMPLE(f = betaPDF, N=100, lb=0, ub = 1, maxf = 2))
+#'
 #'
 #'
 oneDSample <- function(f, N, lb, ub, maxf) {
