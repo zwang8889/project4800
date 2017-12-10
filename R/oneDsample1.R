@@ -41,6 +41,8 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       }}
     else {stop('You input an invalid method.')}
   }}
+
+
   sampleplot<- funtion(oneDsample1){
     ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
   }
