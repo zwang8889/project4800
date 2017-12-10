@@ -14,7 +14,7 @@
 #'@export
 #'
 #'@examples
-#'f<- function(x) {-1< x & x < 0, x+1, 0)}
+#'f<- function(x) {ifelse(-1< x & x < 0, x+1, 0)}
 #'w=oneDSample1(f,50000,-1,0)
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
