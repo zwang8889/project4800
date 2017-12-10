@@ -34,7 +34,7 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       alternatey=min((abs(minx-maxx)))
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
-      data.frame(x = replicate(N, {sx <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
+      data.frame(x = replicate(N, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
     }
     else if(metod=='unif'){
       if(lb!=Inf & ub!=Inf){
