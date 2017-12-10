@@ -30,7 +30,7 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       x = runif(10000,-1000,1000)
       maxf= max(f(x))
       maxx = x[which(f(x)==max(f(x)))]
-      minx = y[which(f(x)==min(f(x)))]
+      minx = x[which(f(x)==min(f(x)))]
       alternatey=min((abs(minx-maxx)))
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
