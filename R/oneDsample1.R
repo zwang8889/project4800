@@ -22,6 +22,11 @@
 #'w=oneDSample1(f,50000,-1,0)
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
+#'f<- function(x){dnorm(x,-5000,5000)}
+#'w=oneDSample1(f,50000,-1,0)
+#'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
+#'
+#'
 #'
 #'Need to add more examples maybe
 library(ggplot2)
@@ -40,7 +45,7 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       c= maxf/dnorm(maxx,maxx,sd)
       data.frame(x = replicate(N, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
     }
-    else if(metod=='unif'){
+    else if(method=='unif'){
       if(lb!=Inf & ub!=Inf){
         maxf<-max(f(runif(10000,lb,ub)))+1
         data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
