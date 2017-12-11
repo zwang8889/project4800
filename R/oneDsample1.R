@@ -24,13 +24,12 @@
 #'
 #'f<- function(x){dnorm(x,-5000,5000)}
 #'w=oneDSample1(f,50000)
-#'"ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = red")
+#'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'
 #'
 #'Need to add more examples maybe
 library(ggplot2)
-library(stats)
 oneDSample1<- function(f,N=10000,lb=Inf,ub=Inf){
   val = integrate(f,lb,ub)$val
   if (0.98>val|val>1.01){
