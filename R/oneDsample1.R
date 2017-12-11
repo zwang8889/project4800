@@ -19,11 +19,11 @@
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'f<- function(x) {1/pi/(1+x^2)}
-#'w=oneDSample1(f,50000,Inf,Inf)
+#'w=oneDSample1(f,50000)
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'f<- function(x){dnorm(x,-5000,5000)}
-#'w=oneDSample1(f,50000,-1,0)
+#'w=oneDSample1(f,50000)
 #'"ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = red")
 #'
 #'
@@ -31,8 +31,9 @@
 #'Need to add more examples maybe
 library(ggplot2)
 library(stats)
-oneDSample1<- function(f,N=10000,lb,ub){
-  if (abs(integrate(f,lb,ub)$val)!=1){
+oneDSample1<- function(f,N=10000,lb=Inf,ub=Inf){
+  val = integrate(f,lb,ub)$val
+  if (0.98>val|val>1.01){
     stop("Error: This is not a valid pdf.The area under the function you given should be 1")
   }
   else{
