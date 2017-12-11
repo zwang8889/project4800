@@ -14,28 +14,33 @@
 #'@export
 #'
 #'@examples
-#'f<- function(x) {ifelse(-1< x & x < 0, x+1, 0)}
+#'f<- function(x) {ifelse(-1< x & x < 0, 3*x^2, 0)}
 #'w=oneDSample1(f,50000,-1,0)
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
-#'f<- function(x) {ifelse(0<x &x<1, x^3,0)}
-#'w=oneDSample1(f,50000,-1,0)
+#'f<- function(x) {1/pi/(1+x^2)}
+#'w=oneDSample1(f,50000,Inf,Inf)
 #'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
 #'
 #'f<- function(x){dnorm(x,-5000,5000)}
 #'w=oneDSample1(f,50000,-1,0)
-#'ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = "red")
+#'"ggplot(w,aes(x)) + geom_density() + stat_function(fun = f, color = red")
 #'
 #'
 #'
 #'Need to add more examples maybe
 library(ggplot2)
-oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
-  if (abs(integrate(f,lb,ub)$val)>1.001){
+library(stats)
+oneDSample1<- function(f,N=10000,lb,ub){
+  if (abs(integrate(f,lb,ub)$val)!=1){
     stop("Error: This is not a valid pdf.The area under the function you given should be 1")
   }
   else{
-    if (method=='normal'){
+    if (lb != Inf & ub !=Inf){
+      maxf<-max(f(runif(10000,lb,ub)))
+      data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSX), pSX, NA)}))
+       }
+    else{
       x = runif(10000,-1000,1000)
       maxf= max(f(x))
       maxx = x[which(f(x)==max(f(x)))]
@@ -44,14 +49,8 @@ oneDSample1<- function(f,N=10000,lb,ub,method='normal'){
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
       data.frame(x = replicate(N, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
-    }
-    else if(method=='unif'){
-      if(lb!=Inf & ub!=Inf){
-        maxf<-max(f(runif(10000,lb,ub)))+1
-        data.frame(x = replicate(N, {pSX <- runif(1, lb, ub);ifelse(runif(1,0,maxf) < f(pSP), pSX, NA)}))
-      }}
-    else {stop('You input an invalid method.')}
-  }
-}
+      }}}
+  
+
 
 
