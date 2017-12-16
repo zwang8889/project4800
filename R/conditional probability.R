@@ -13,5 +13,14 @@
 probability = function(condition,data){
   length = length(data)
   if(length==1){
-    integrate(condition,lb,ub)}
-}
+    return(mean(condition(data)))
+  }
+  else if(length==2){
+    return(mean(condition(data$x,data$y)))
+  }
+  else{
+    stop("This is not a valid formula.")
+  }}
+
+
+  
