@@ -17,11 +17,11 @@
 
 Expected <- function(f,rv){
   L <- length(rv)
-  if (len==1){
+  if (L==1){
     meanval <- mean(f(rv))
     return(meanval)
   }
-  else if (len==2){
+  else if (L==2){
     meanval <- mean(f(rv$x,rv$y))
     return(meanval)
   }
