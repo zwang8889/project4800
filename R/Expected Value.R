@@ -21,5 +21,11 @@ Expected <- function(f,rv){
     meanval <- mean(f(rv))
     return(meanval)
   }
-
+  else if (len==2){
+    meanval <- mean(f(rv$x,rv$y))
+    return(meanval)
+  }
+  else {
+    stop("Error: Please enter with a valid input format.")
+  }
 }
