@@ -7,25 +7,29 @@
 #'
 #'@param f the pdf that we are sampling from
 #'@param N the number of attempted samples
-#'@param lbx the lower bound of support x
-#'@param lby the lower bound of support y
-#'@param ubx the upper bound of support x
-#'@param uby the upper bound of support y
+#'@param lbx the lower bound of support x of f
+#'@param lby the lower bound of support y of f
+#'@param ubx the upper bound of support x of f
+#'@param uby the upper bound of support y of f
 #'
 #'@return A vector containing samples from pdf
-#'@export
 #'
+#'@export
 #'@examples
+#'
+#'
+#'
+#'
+#'
 
 
-twoDsample <- function(fj, N, lbx, ubx, lby, uby) {
-
+twoDsample <- function(f, N, lbx, ubx, lby, uby) {
   if (c(lbx,ubx), c(lby,uby), integral >0.01) {
-    stop("Error: not a pdf. The area under the function you given should be 1")
-  }
-  else{
-    for
-      }
-  }
+   stop("Error: not a pdf. The area under the function you given should be 1")
+ }
+ else{
+   for
+     }
+}
 
 
