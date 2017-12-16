@@ -1,9 +1,9 @@
-#' Single Variable Expected Value
+#' Expectation of a function of random variables
 #'
-#' This function is an implementation of computing expected value for ramdon variables given pdf f.
+#' This function is an implementation of computing expected value for ramdon variables given function f.
 #'
-#' @param f the function that we will compute its expected value
-#' @param rv the random variabel will be given
+#' @param f the function that we would need to compute its expected value
+#' @param rv the random variabel would be given
 #'
 #' @return the expected value of the given function
 #' @export
@@ -17,9 +17,15 @@
 
 Expected <- function(f,rv){
   L <- length(rv)
-  if (len==1){
+  if (L==1){
     meanval <- mean(f(rv))
     return(meanval)
   }
-
+  else if (L==2){
+    meanval <- mean(f(rv$x,rv$y))
+    return(meanval)
+  }
+  else {
+    stop("Error: Please enter with a valid input format.")
+  }
 }
