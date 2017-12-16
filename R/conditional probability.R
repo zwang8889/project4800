@@ -9,10 +9,10 @@
 #' @export as numbers
 #' 
 #
-f <- function(x) {ifelse(0 < x & x < 1, 4*x^3, 0)}
-x1 = oneDSample1(f,10000)
-c1 = function(x){x<0.4}
-probability(c1,x1)
+#'f<- function(x) {ifelse(-1< x & x < 0, 3*x^2, 0)}
+#'w=oneDSample1(f,50000,-1,0)
+#'condition = function(x){x<0.4}
+#'probability(condition,w)
 
 probability = function(condition,rv){
   length = length(rv)
