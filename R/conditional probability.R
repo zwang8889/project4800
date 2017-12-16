@@ -1,0 +1,17 @@
+#' Conditional probability calculation
+#' 
+#' 
+#' Here are some details about our program
+#' @param condition the condition that is given
+#' @param data the data we are entering
+#' 
+#' @return the value of probability
+#' @export as numbers
+#' 
+#
+
+probability = function(condition,data){
+  length = length(data)
+  if(length==1){
+    integrate(condition,lb,ub)}
+}
