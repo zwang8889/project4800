@@ -24,7 +24,7 @@ Expected <- function(f,rv){
     return(meanval)
   }
   else if (L==2){
-    meanval <- mean(f(rv$x,rv$y))
+    meanval <- mean(f(rv$x,rv$y,na.rm=T))
     return(meanval)
   }
   else {
