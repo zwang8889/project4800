@@ -30,7 +30,8 @@
 #'
 #'Need to add more examples maybe
 #'
-oneDSample1<- function(f,N=10000,lb=Inf,ub=Inf){
+oneDSample1<- function(f,N=10000,lb=Inf,ub=Inf,continuous=TRUE){
+  if(continuous==T){
   val = integrate(f,lb,ub)$val
   if (0.98>val|val>1.01){
     stop("Error: This is not a valid pdf.The area under the function you given should be 1")
@@ -48,10 +49,11 @@ oneDSample1<- function(f,N=10000,lb=Inf,ub=Inf){
       alternatey=min((abs(minx-maxx)))
       sd = (2/max(f(x)))
       c= maxf/dnorm(maxx,maxx,sd)
-      data.frame(x = replicate(N, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
-      }}}
-
-library(ggplot2)
+      data.frame(x = replicate(10000, {pSX <- rnorm(1,maxx,sd); ifelse( runif(1,0,c*dnorm(1,maxx,sd)) < f(pSX), pSX, NA)}))
+    }}}
+  else{
+    stop("You are not inputing a pdf.")
+  }}
 
 
 
