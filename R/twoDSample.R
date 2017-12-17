@@ -18,25 +18,36 @@
 #'@examples
 #'
 #'
-
+library(MASS)
 library(ggplot2)
 library(cubature)
 
-twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
-  integral = adaptIntegrate(f,c(lbx,lby),c(ubx,uby)) $integral
+# jointPFF <- function(x,y){
+# x = x
+# x = y
+# ifelse(0<x1 & x1<1 & 0<x2 & x2<1 & 0<x1+x2 & x1+x2<1, 24*x1*x2, 0)}
+
+twoDsample <- function(f, N=1000, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
+  integral = adaptIntegrate(f,c(lbx,lby),c(ubx,uby),maxEval = 1000) $integral
   if (0.98>integral|integral>1.01) {
    stop("Error: not a pdf. The area under the function you given should be 1")
- }
- else if(lbx!=-1000&ubx!=1000&lby!=-1000&uby!=1000){
-   maxf <- max(replicate(100000,f(c(runif(1,lbx,ubx),runif(1,lby,uby)))))
-   twos=c()
-   pSX=runif(1,lbx,ubx)
-   pSY=runif(1,lby,uby)
-   two=c(pSX,pSY)
-   sample = data.frame(x=replicate(5000,{pSX;pSY;if(runif(1,0,maxf)<f(two)){
-  twos=c(twos,two)}}))
- }
- else{
+  }
+  else if(lbx!=-1000&ubx!=1000&lby!=-1000&uby!=1000){
+    pSX=runif(1,lbx,ubx)
+    pSY=runif(1,lby,uby)
+    two=c(pSX,pSY)
+    maxf <- max(replicate(100000,f(c(runif(1,lbx,ubx),runif(1,lby,uby)))))
+    twos=c()
+    n=0
+    while (n < N) {
+      two <- c(runif(1,lbx,ubx),runif(1,lby,uby))
+      if (runif(1, 0, maxf) < f(two)){
+        twos = c(twos, two)
+        n = n+1
+      }
+    }
+    return(data.frame(x=twos[c(seq(1,length(twos)-1,2))],y=twos[c(seq(2,length(twos),2))]))}
+  else{
     d_norm = function(x,mu,sig){
       x1 = x[1]
       x2 = x[2]
@@ -52,19 +63,18 @@ twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
     mu = c(optimvalue$par)
     sd = 2/maxfvalue
     C = maxfvalue/d_norm(c(mu[1],mu[2]),c(mu[1],mu[2]),c(sd,sd))
-    cond = C * d_norm(c(two, mu, c(sd,sd)))
     twos = c()
     n = 0
     mat = matrix(c(sd,0,0,sd),2,2)
-
+    
     while (n<N){
-      two = mvrnorm(1,mu,mat)
+      two = mvrnorm(n=1,mu,mat)
+      cond = C * d_norm(two, mu, c(sd,sd))
       if ( runif(1,0, cond) < f(two)){
         twos = c(twos,two)
         n = n+1
       }
     }
     return(data.frame(x=twos[c(seq(1,length(twos)-1,2))],y=twos[c(seq(2,length(twos),2))]))
- }
+  }
 }
-
