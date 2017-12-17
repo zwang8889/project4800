@@ -48,10 +48,10 @@ twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
     }
     mid = c((ubx+lbx)/2,(uby+lby)/2)
     optimvalue = optim(mid,f, gr=NULL, lower = -Inf, upper = Inf, control = list(fnscale = -1))
-    maxfvalue = ovalue$value
+    maxfvalue = optimvalue$value
     mu = c(optimvalue$par)
     sd = 2/maxfvalue
-    C = maxf/dmvnorm(c(mu[1],mu[2]),c(mu[1],mu[2]),c(sd,sd))
+    C = maxfvalue/d_norm(c(mu[1],mu[2]),c(mu[1],mu[2]),c(sd,sd))
     cond = C * d_norm(c(two, mu, c(sd,sd)))
     twos = c()
     n = 0
@@ -67,6 +67,4 @@ twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
     return(data.frame(x=twos[c(seq(1,length(twos)-1,2))],y=twos[c(seq(2,length(twos),2))]))
  }
 }
-
-
 
