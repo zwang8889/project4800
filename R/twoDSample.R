@@ -52,13 +52,13 @@ twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
     mu = c(optimvalue$par)
     sd = 2/maxfvalue
     C = maxfvalue/d_norm(c(mu[1],mu[2]),c(mu[1],mu[2]),c(sd,sd))
-    cond = C * d_norm(c(two, mu, c(sd,sd)))
     twos = c()
     n = 0
     mat = matrix(c(sd,0,0,sd),2,2)
 
     while (n<N){
-      two = mvrnorm(1,mu,mat)
+      two = mvrnorm(n=1,mu,mat)
+      cond = C * d_norm(c(two, mu, c(sd,sd)))
       if ( runif(1,0, cond) < f(two)){
         twos = c(twos,two)
         n = n+1
