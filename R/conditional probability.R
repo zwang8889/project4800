@@ -1,13 +1,13 @@
 #' Conditional probability calculation
-#' 
-#' 
-#' Here are some details about our program
+#'
+#' The goal of the function is used to compute the probability of the given ramdon variables.
+#'
 #' @param condition the condition that is given
 #' @param rv the parameters we are entering
-#' 
+#'
 #' @return the value of probability
 #' @export as numbers
-#' 
+#'
 #
 #'f<- function(x) {ifelse(-1< x & x < 0, 3*x^2, 0)}
 #'w=oneDSample1(f,50000,-1,0)
@@ -32,4 +32,4 @@ probability = function(condition,rv){
   }}
 
 
-  
+
