@@ -17,10 +17,10 @@
 probability = function(condition,rv){
   length = length(rv)
   if(length==1){
-    return(mean(condition(rv))
+    return(mean(condition(rv$x),na.rm=T))
   }
   else if(length==2){
-    return(mean(condition(rv$x,rv$y))
+    return(mean(condition(rv$x,rv$y),na.rm=T))
   }
   else{
     stop("This is not a valid formula.")
