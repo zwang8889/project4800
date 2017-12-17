@@ -20,6 +20,8 @@
 #'
 
 library(ggplot2)
+library(cubature)
+
 twoDsample <- function(f, N, lbx=-Inf, ubx=Inf, lby=-Inf, uby=Inf) {
   integral = adaptIntegrate(f,c(lbx,lby),c(ubx,uby)) $integral
   if (0.98>integral|integral>1.01) {
@@ -44,6 +46,25 @@ twoDsample <- function(f, N, lbx=-Inf, ubx=Inf, lby=-Inf, uby=Inf) {
       sig2 = sig[2]
       exp(-1/2*((x1-mu1)^2/sig1^2 - 2*(x1-mu1)*(x2-mu2)/sig1/sig2 + (x2-mu2)^2/sig2^2))/(2*pi*sig1*sig2)
     }
+    mid = c((ubx+lbx)/2,(uby+lby)/2)
+    ovalue = optim(mid,f, control = list(fnscale = -1))
+    maxfvalue = ovalue$value
+    mu = c(ovalue$par)
+    sd = 2/maxfvalue
+    C = maxf/dmvnorm(c(mu[1],mu[2]),c(mu[1],mu[2]),c(sd,sd))
+    cond = C * d_norm(c(two, mu, c(sd,sd)))
+    twos = c()
+    n = 0
+    mat = matrix(c(sd,0,0,sd),2,2)
+
+    while (n<N){
+      two = mvrnorm(1,mu,mat)
+      if ( runif(1,0, cond) < f(two)){
+        twos = c(twos,two)
+        n = n+1
+      }
+    }
+    return(data.frame(x=twos[c(seq(1,length(twos)-1,2))],y=twos[c(seq(2,length(twos),2))]))
  }
 }
 
