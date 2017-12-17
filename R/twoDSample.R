@@ -33,7 +33,19 @@ twoDsample <- function(f, N, lbx=-Inf, ubx=Inf, lby=-Inf, uby=Inf) {
    two=c(pSX,pSY)
    sample = data.frame(x=replicate(5000,{pSX;pSY;if(runif(1,0,maxf)<f(two)){
   twos=c(twos,two)}}))
- }}
+ }
+ else{
+    d_norm = function(x,mu,sig){
+      x1 = x[1]
+      x2 = x[2]
+      mu1 = mu[1]
+      mu2 = mu[2]
+      sig1 = sig[1]
+      sig2 = sig[2]
+      exp(-1/2*((x1-mu1)^2/sig1^2 - 2*(x1-mu1)*(x2-mu2)/sig1/sig2 + (x2-mu2)^2/sig2^2))/(2*pi*sig1*sig2)
+    }
+ }
+}
 
 
 
