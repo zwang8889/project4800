@@ -27,7 +27,7 @@ twoDsample <- function(f, N, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
   if (0.98>integral|integral>1.01) {
    stop("Error: not a pdf. The area under the function you given should be 1")
  }
- else if(lbx!=-Inf&ubx!=Inf&lby!=-Inf&uby!=Inf){
+ else if(lbx!=-1000&ubx!=1000&lby!=-1000&uby!=1000){
    maxf <- max(replicate(100000,f(c(runif(1,lbx,ubx),runif(1,lby,uby)))))
    twos=c()
    pSX=runif(1,lbx,ubx)
