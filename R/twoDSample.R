@@ -38,7 +38,7 @@ library(cubature)
 
 twoDsample <- function(f, N=1000, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
   integral = adaptIntegrate(f,c(lbx,lby),c(ubx,uby),maxEval = 1000) $integral
-  if (0.98>integral|integral>1.01) {
+  if (abs(integral-1)<0.001) {
    stop("Error: not a pdf. The area under the function you given should be 1")
   }
   else if(lbx!=-1000&ubx!=1000&lby!=-1000&uby!=1000){
