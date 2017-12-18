@@ -1,4 +1,4 @@
-Package: 4800project
+Package: helloworld
 Type: Package
 Title: This package generate the graphs for oneDsample and twoDsample, also calculate the expect value and the probability
 Version: 0.1.0
