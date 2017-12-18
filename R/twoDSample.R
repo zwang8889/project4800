@@ -22,10 +22,19 @@ library(MASS)
 library(ggplot2)
 library(cubature)
 
-# jointPFF <- function(x,y){
-# x = x
-# x = y
-# ifelse(0<x1 & x1<1 & 0<x2 & x2<1 & 0<x1+x2 & x1+x2<1, 24*x1*x2, 0)}
+#ointPFF <- function(x){
+#x1 = x[1]
+#x2 = x[2]
+#ifelse(0<x1 & x1<1 & 0<x2 & x2<1 , 24*x1*x2, 0)}
+#w = twoDsample(f = jointPFF, N=10000,0,1,0,1)
+#ggplot(w, aes(x, y)) +  geom_density_2d()
+#
+# f <- function(x){
+# x1 = x[1]
+# x2 = x[2]
+# ifelse(x2>0, 1/pi/(1+x1^2) * 0.05*exp(-0.05*x2), 0)}
+# w=twoDsample(f = f, N=10000)
+# ggplot(a, aes(x, y)) +  geom_density_2d()
 
 twoDsample <- function(f, N=1000, lbx=-1000, ubx=1000, lby=-1000, uby=1000) {
   integral = adaptIntegrate(f,c(lbx,lby),c(ubx,uby),maxEval = 1000) $integral
