@@ -18,6 +18,26 @@
 #'w=oneDSample1(f,50000)
 #'condition=function(x){x<4.5}
 #'probability(f,w)
+#'
+#'
+#'
+#'f <- function(x){
+# x1 = x[1]
+# x2 = x[2]
+# ifelse(x2>0, 1/pi/(1+x1^2) * 0.05*exp(-0.05*x2), 0)}
+# w=twoDsample(f = f, N=10000)
+#condition = function(x,y){x<0.1 & y<2}
+#probability(condition,w)
+
+
+#jointPFF <- function(x){
+#x1 = x[1]
+#x2 = x[2]
+#ifelse(0<x1 & x1<1 & 0<x2 & x2<1 , 24*x1*x2, 0)}
+#w = twoDsample(f = jointPFF, N=10000)
+#condition=function(x,y){x<0.1 & y<2}
+#probability(condition,w)
+#
 
 probability = function(condition,rv){
   length = length(rv)
