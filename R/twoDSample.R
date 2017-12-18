@@ -22,7 +22,7 @@ library(MASS)
 library(ggplot2)
 library(cubature)
 
-#ointPFF <- function(x){
+#jointPFF <- function(x){
 #x1 = x[1]
 #x2 = x[2]
 #ifelse(0<x1 & x1<1 & 0<x2 & x2<1 , 24*x1*x2, 0)}
